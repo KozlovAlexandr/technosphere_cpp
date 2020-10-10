@@ -4,47 +4,53 @@
 #include <cstring>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include <fcntl.h>
 #include <algorithm>
+
 
 namespace process
 {
 
 Process::Process(const std::string &path, const std::vector<std::string> &args)
 {
-    int pipes[2][2];
-    if (pipe2(pipes[0], O_CLOEXEC) < 0 || pipe2(pipes[1], O_CLOEXEC) < 0)
-    {
-        throw std::runtime_error(strerror(errno));
-    }
+    readPipe.open();
+    writePipe.open();
 
-    pid_t pid = fork();
+    pid_t pid = ::fork();
     if (pid < 0)
     {
-        throw std::runtime_error(strerror(errno));
+        throw std::runtime_error(::strerror(errno));
     }
-    if (!pid)
+    if (pid == 0)
     {
-        if (dup2(pipes[0][1], 1) < 0 ||  dup2(pipes[1][0], 0) < 0)
-                throw std::runtime_error(strerror(errno));
+        std::string pathCopy = path;
+        std::vector<std::string> argsCopy = args;
+        std::vector<char*> argsToPass = makeArgsToPass(pathCopy, argsCopy);
 
-        std::vector<const char*> argsToPass;
-        argsToPass.reserve(args.size() + 2);
-        argsToPass.push_back(path.data());
-        std::transform(args.begin(), args.end(), argsToPass.end(),
-                       [](const std::string &s) { return s.data(); });
+        if (dup2(readPipe.getOutFd(), STDOUT_FILENO) < 0 ||  dup2(writePipe.getInFd(), STDIN_FILENO) < 0)
+            throw std::runtime_error(strerror(errno));
 
-        execvp(path.data(), const_cast<char *const *>(argsToPass.data()));
+        execvp(path.data(), argsToPass.data()); // after this call pipe's descriptors will be closed
+                                                // automatically as created with O_CLOEXEC flag
 
         exit(EXIT_FAILURE);
     }
 
-    ::close(pipes[0][1]);
-    ::close(pipes[1][0]);
+    readPipe.closeOut();
+    writePipe.closeIn();
 
-    fdRead_ = pipes[0][0];
-    fdWrite_ = pipes[1][1];
     pid_ = pid;
+}
+
+std::vector<char*> Process::makeArgsToPass(std::string &path, std::vector<std::string>& args)
+{
+    std::vector<char*> res;
+
+    res.push_back(path.data());
+    std::transform(args.begin(), args.end(), std::back_inserter(res),
+                       [](std::string &s) { return s.data(); });
+    res.push_back(nullptr);
+
+    return res;
 }
 
 Process::~Process()
@@ -54,7 +60,7 @@ Process::~Process()
 
 size_t Process::write(const void *data, size_t len)
 {
-    ssize_t bytesWritten = ::write(fdWrite_, data, len);
+    ssize_t bytesWritten = ::write(writePipe.getOutFd(), data, len);
     if (bytesWritten < 0)
         throw std::runtime_error(strerror(errno));
 
@@ -63,7 +69,7 @@ size_t Process::write(const void *data, size_t len)
 
 size_t Process::read(void *data, size_t len)
 {
-    ssize_t bytesRead = ::read(fdRead_, data, len);
+    ssize_t bytesRead = ::read(readPipe.getInFd(), data, len);
     if (bytesRead < 0)
         throw std::runtime_error(strerror(errno));
 
@@ -96,18 +102,16 @@ void Process::writeExact(const void *data, size_t len)
 
 void Process::closeStdin()
 {
-    ::close(fdWrite_);
-    fdWrite_ = -1;
+    writePipe.closeOut();
 }
 
 void Process::close()
 {
-    ::close(fdRead_);
-    ::close(fdWrite_);
-    fdRead_ = fdWrite_= -1;
+    readPipe.closeIn();
+    writePipe.closeOut();
 
     kill(pid_, SIGINT);
     waitpid(pid_, nullptr, 0);
 }
 
-}
+} // namespace process

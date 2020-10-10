@@ -1,6 +1,7 @@
 #ifndef SPHERE_PROCESS_H
 #define SPHERE_PROCESS_H
 
+#include "pipewrapper.h"
 #include <string>
 #include <vector>
 
@@ -19,14 +20,15 @@ public:
     void readExact(void* data, size_t len);
 
     void closeStdin();
-
     void close();
 
 private:
-    int fdRead_, fdWrite_;
+    static std::vector<char*> makeArgsToPass(std::string &path, std::vector<std::string> &args);
+
+    PipeWrapper readPipe, writePipe;
     pid_t pid_;
 };
 
-}
+} // namespace process
 
 #endif //SPHERE_PROCESS_H
