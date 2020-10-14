@@ -6,6 +6,20 @@
 #include <sys/wait.h>
 #include <algorithm>
 
+namespace
+{
+    std::vector<char*> makeArgsToPass(std::string &path, std::vector<std::string> &args)
+    {
+        std::vector<char*> res;
+
+        res.push_back(path.data());
+        std::transform(args.begin(), args.end(), std::back_inserter(res),
+                       [](std::string &s) { return s.data(); });
+        res.push_back(nullptr);
+
+        return res;
+    }
+}
 
 namespace process
 {
@@ -39,18 +53,6 @@ Process::Process(const std::string &path, const std::vector<std::string> &args)
     writePipe.closeIn();
 
     pid_ = pid;
-}
-
-std::vector<char*> Process::makeArgsToPass(std::string &path, std::vector<std::string>& args)
-{
-    std::vector<char*> res;
-
-    res.push_back(path.data());
-    std::transform(args.begin(), args.end(), std::back_inserter(res),
-                       [](std::string &s) { return s.data(); });
-    res.push_back(nullptr);
-
-    return res;
 }
 
 Process::~Process()

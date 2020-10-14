@@ -23,8 +23,6 @@ public:
     void close();
 
 private:
-    static std::vector<char*> makeArgsToPass(std::string &path, std::vector<std::string> &args);
-
     PipeWrapper readPipe, writePipe;
     pid_t pid_;
 };
