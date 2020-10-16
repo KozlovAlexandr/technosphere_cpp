@@ -2,6 +2,7 @@
 
 namespace log
 {
+
     Logger& Logger::getInstance()
     {
         static Logger globalLogger;
@@ -58,4 +59,5 @@ namespace log
     {
         Logger::getInstance().getGlobalLogger().error(message);
     }
-}
+
+} // namespace log

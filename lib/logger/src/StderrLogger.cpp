@@ -10,7 +10,7 @@ void StderrLogger::log(const std::string &message, const log::Level level)
     {
         std::cerr << message << "\n";
         if (std::cerr.fail())
-            throw std::runtime_error("cannot write to stderr");
+            throw LoggerException("cannot write to stderr");
     }
 }
 

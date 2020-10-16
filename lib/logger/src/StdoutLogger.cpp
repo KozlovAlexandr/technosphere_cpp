@@ -24,4 +24,4 @@ void StdoutLogger::log(const std::string &message, const log::Level level)
     }
 }
 
-}
+} // namespace log

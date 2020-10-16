@@ -25,5 +25,5 @@ void FileLogger::log(const std::string &message, log::Level level)
     }
 }
 
-}
+} // namespace log
 

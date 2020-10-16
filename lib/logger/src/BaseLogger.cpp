@@ -1,7 +1,3 @@
-//
-// Created by Alexandr on 14.10.2020.
-//
-
 #include "BaseLogger.h"
 
 namespace log
