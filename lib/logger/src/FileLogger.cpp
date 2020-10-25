@@ -3,7 +3,7 @@
 namespace log
 {
 
-FileLogger::FileLogger(const std::string &filename, log::Level level) : BaseLogger(level)
+FileLogger::FileLogger(const std::string &filename, log::Level level) : BaseLogger(fileStream_, level)
 {
     fileStream_.open(filename, std::ios_base::out);
     if (fileStream_.fail())
@@ -13,16 +13,6 @@ FileLogger::FileLogger(const std::string &filename, log::Level level) : BaseLogg
 void FileLogger::flush()
 {
     fileStream_.flush();
-}
-
-void FileLogger::log(const std::string &message, log::Level level)
-{
-    if (level >= this->level())
-    {
-        fileStream_ << message << "\n";
-        if (fileStream_.fail())
-            throw LoggerException("cannot write to file");
-    }
 }
 
 } // namespace log

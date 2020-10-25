@@ -18,7 +18,7 @@ enum class Level
 class BaseLogger
 {
 public:
-    explicit BaseLogger(Level level = Level::WARN);
+    explicit BaseLogger(std::ostream &outStream, Level level = Level::WARN);
     virtual ~BaseLogger() = default;
 
     void debug(const std::string &message);
@@ -29,12 +29,13 @@ public:
     void setLevel(Level level);
     [[nodiscard]] Level level() const;
 
-    virtual void flush() = 0;
+    virtual void flush();
 
 protected:
-    virtual void log(const std::string &message, Level level) = 0;
+    virtual void log(const std::string &message, Level level);
 
 private:
+    std::ostream &outStream_;
     Level level_;
 };
 

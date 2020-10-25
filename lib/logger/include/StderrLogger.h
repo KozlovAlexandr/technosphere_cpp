@@ -9,13 +9,7 @@ namespace log
 class StderrLogger : public BaseLogger
 {
 public:
-    using BaseLogger::BaseLogger;
-    ~StderrLogger() override = default;
-
-    void flush() override;
-
-private:
-    void log(const std::string &message, Level level) override;
+    explicit StderrLogger(Level level = Level::INFO);
 };
 
 } // namespace log
