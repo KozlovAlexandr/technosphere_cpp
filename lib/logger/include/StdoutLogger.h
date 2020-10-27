@@ -11,8 +11,6 @@ class StdoutLogger : public BaseLogger
 public:
     explicit StdoutLogger(Level level = Level::INFO);
     ~StdoutLogger() override;
-
-    void flush() override;
 };
 
 } // namespace log

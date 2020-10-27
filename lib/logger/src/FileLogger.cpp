@@ -10,10 +10,5 @@ FileLogger::FileLogger(const std::string &filename, log::Level level) : BaseLogg
         throw LoggerException("cannot open file");
 }
 
-void FileLogger::flush()
-{
-    fileStream_.flush();
-}
-
 } // namespace log
 

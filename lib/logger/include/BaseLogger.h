@@ -29,7 +29,7 @@ public:
     void setLevel(Level level);
     [[nodiscard]] Level level() const;
 
-    virtual void flush();
+    void flush();
 
 protected:
     virtual void log(const std::string &message, Level level);

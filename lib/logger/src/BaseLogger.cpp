@@ -46,6 +46,9 @@ void BaseLogger::log(const std::string &message, Level level)
     }
 }
 
-void BaseLogger::flush() {}
+void BaseLogger::flush()
+{
+    outStream_.flush();
+}
 
 } // namespace log

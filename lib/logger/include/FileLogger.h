@@ -12,8 +12,6 @@ class FileLogger : public BaseLogger
 public:
     explicit FileLogger(const std::string &filename, Level level = Level::WARN);
 
-    void flush() override;
-
 private:
     std::ofstream fileStream_;
 };
