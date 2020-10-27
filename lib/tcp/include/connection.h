@@ -9,7 +9,7 @@ namespace tcp
 class Connection
 {
 public:
-    Connection(const std::string& ipAddress, unsigned port);
+    Connection(const std::string& ipAddress, unsigned short port);
     Connection(Connection &&connection) = default;
     Connection &operator=(Connection&& connection) = default;
 
@@ -24,12 +24,12 @@ public:
 
     void close();
 
-    void setTimeout(time_t secs);
+    void setTimeout(unsigned msecs);
 
 private:
     explicit Connection(int fd);
 
-    SocketDescriptor socketDescriptor;
+    SocketDescriptor socketDescriptor_;
     friend class Server;
 };
 

@@ -51,13 +51,17 @@ void SocketDescriptor::setFd(int fd)
     fd_ = fd;
 }
 
-void SocketDescriptor::setTimeout(time_t secs)
+void SocketDescriptor::setTimeout(unsigned msecs)
 {
-    timeval timeout{secs, 0};
+    timeval timeout{};
+
+    timeout.tv_sec = msecs / 1000;
+    timeout.tv_usec = (msecs % 1000) * 1000;
+
     if (setsockopt(fd_, SOL_SOCKET, SO_SNDTIMEO, &timeout, sizeof(timeout)) < 0
         || setsockopt(fd_, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout)) < 0)
     {
-        throw TcpException(strerror(errno));
+        throw TcpException("cannot set timeout");
     }
 }
 

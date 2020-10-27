@@ -11,19 +11,18 @@ class Server
 {
 public:
     Server() = default;
-    Server(const std::string &ipAddress, unsigned port, int maxConnections = SOMAXCONN);
+    Server(const std::string &ipAddress, unsigned short port, int maxConnections = SOMAXCONN);
 
     Server(Server&& server) = default;
     Server &operator=(Server &&server) = default;
 
     void open(const std::string &ipAddress, unsigned short port, int maxConnections = SOMAXCONN);
-    void setTimeout(time_t sec);
+    void setTimeout(unsigned msec);
     void close();
     Connection accept();
 
 private:
-
-    SocketDescriptor socketDescriptor;
+    SocketDescriptor socketDescriptor_;
 };
 
 } // namespace tcp

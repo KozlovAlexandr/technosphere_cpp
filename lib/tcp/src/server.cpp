@@ -7,7 +7,7 @@
 namespace tcp
 {
 
-Server::Server(const std::string &ipAddress, unsigned int port, int maxConnections)
+Server::Server(const std::string &ipAddress, unsigned short port, int maxConnections)
 {
     open(ipAddress, port, maxConnections);
 }
@@ -20,6 +20,8 @@ void Server::open(const std::string &ipAddress, unsigned short port, int maxConn
         throw TcpException("cannot create a socket");
     }
 
+    SocketDescriptor newSocketDescriptor(fd);
+
     sockaddr_in addr{};
     addr.sin_family = AF_INET;
     addr.sin_port = htons(port);
@@ -31,25 +33,25 @@ void Server::open(const std::string &ipAddress, unsigned short port, int maxConn
     int reuseAddrValue = 1;
     if (setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, &reuseAddrValue, sizeof(reuseAddrValue)) < 0)
     {
-        throw TcpException(strerror(errno));
+        throw TcpException("cannot set SO_REUSEADDR option");
     }
 
     if (::bind(fd, reinterpret_cast<sockaddr*>(&addr), sizeof(addr)) < 0)
     {
-        throw TcpException(strerror(errno));
+        throw TcpException("cannot bind address");
     }
 
     if (::listen(fd, maxConnections) < 0)
     {
-        throw TcpException(strerror(errno));
+        throw TcpException("listen call error");
     }
 
-    socketDescriptor.setFd(fd);
+    socketDescriptor_ = std::move(newSocketDescriptor);
 }
 
 void Server::close()
 {
-    socketDescriptor.close();
+    socketDescriptor_.close();
 }
 
 Connection Server::accept()
@@ -57,7 +59,7 @@ Connection Server::accept()
     sockaddr_in clientAddress{};
     socklen_t addrSize = sizeof(clientAddress);
 
-    int fd = ::accept(socketDescriptor.getFd(), reinterpret_cast<sockaddr*>(&clientAddress), &addrSize);
+    int fd = ::accept(socketDescriptor_.getFd(), reinterpret_cast<sockaddr*>(&clientAddress), &addrSize);
     if (fd < 0)
     {
         throw TcpException("cannot accept connection");
@@ -66,9 +68,9 @@ Connection Server::accept()
     return Connection(fd);
 }
 
-void Server::setTimeout(time_t secs)
+void Server::setTimeout(unsigned msecs)
 {
-    socketDescriptor.setTimeout(secs);
+    socketDescriptor_.setTimeout(msecs);
 }
 
 } // namespace tcp

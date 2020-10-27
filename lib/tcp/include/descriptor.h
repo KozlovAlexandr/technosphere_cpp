@@ -21,7 +21,7 @@ public:
     void setFd(int fd);
     void close();
 
-    void setTimeout(time_t secs);
+    void setTimeout(unsigned msecs);
 private:
     int fd_ = -1;
 };
