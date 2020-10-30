@@ -1,8 +1,9 @@
-//
-// Created by alexandr on 10/30/20.
-//
+#pragma once
 
-#ifndef PROCESS_SHMEM_EXCEPTION_H
-#define PROCESS_SHMEM_EXCEPTION_H
+#include <stdexcept>
 
-#endif //PROCESS_SHMEM_EXCEPTION_H
+class ShmemException : public std::runtime_error
+{
+public:
+    using std::runtime_error::runtime_error;
+};
