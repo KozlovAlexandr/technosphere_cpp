@@ -7,9 +7,7 @@ namespace shmem
 Semaphore::Semaphore()
 {
     if (sem_init(&sem_, 1, 1) < 0)
-    {
         throw ShmemException("cannot init semaphore");
-    }
 }
 
 Semaphore::~Semaphore()
@@ -20,17 +18,13 @@ Semaphore::~Semaphore()
 void Semaphore::post()
 {
     if (sem_post(&sem_) < 0)
-    {
         throw ShmemException("semaphore post error");
-    }
 }
 
 void Semaphore::wait()
 {
     if (sem_wait(&sem_) < 0)
-    {
         throw ShmemException("semaphore wait error");
-    }
 }
 
 SemaphoreLock::SemaphoreLock(Semaphore &semaphore) : semaphore_(semaphore)

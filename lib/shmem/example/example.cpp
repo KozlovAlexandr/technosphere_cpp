@@ -1,26 +1,25 @@
-#include "process.h"
 #include <iostream>
+#include <sys/types.h>
+#include <unistd.h>
+#include "shared_map.h"
+
+using namespace shmem;
 
 int main()
 {
-    process::Process process("cat", {"-E"});
+    size_t blocks_count = 100;
+    size_t block_size = 128;
 
-    const char message[] = "Hello, world!\n";
-    process.write(message, sizeof(message));
+    SharedMap<int, std::string> s(block_size, blocks_count);
 
-    char str[sizeof(message) + 1];
-    process.read(str, sizeof(message) + 1);
-
-    std::cout << str << std::endl;
-
-    process.close();
-    try
+    if (!fork())
     {
-        process.write(message, sizeof(message));
-    } catch (const std::runtime_error& err)
-    {
-        std::cout << "Error: " << err.what() << std::endl;
+        s.insert(3, "hello world fdsfdsfsdfsfsfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdf");
+        return 0;
     }
+
+    wait(nullptr);
+    std::cout << s.get(3) << std::endl;
 
     return 0;
 }
