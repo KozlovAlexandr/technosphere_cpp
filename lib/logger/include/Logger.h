@@ -15,7 +15,9 @@ class Logger
 public:
     Logger(const Logger &logger) = delete;
     Logger &operator=(const Logger &logger) = delete;
-    
+    Logger(Logger &&logger) = delete;
+    Logger &operator=(Logger &&logger) = delete;
+
     static Logger& getInstance();
 
     void setGlobalLogger(std::unique_ptr<BaseLogger> logger);
