@@ -47,8 +47,16 @@ void Connection::connect(const std::string &ipAddress, unsigned short port)
 size_t Connection::write(const void* data, size_t len)
 {
     ssize_t bytesWritten = ::write(socketDescriptor_.getFd(), data, len);
+
     if (bytesWritten < 0)
+    {
+        if (errno == EAGAIN || errno == EWOULDBLOCK)
+        {
+            throw TimeoutException("write timeout");
+        }
+
         throw TcpException("cannot write to socket descriptor");
+    }
 
     return bytesWritten;
 }
@@ -56,8 +64,16 @@ size_t Connection::write(const void* data, size_t len)
 size_t Connection::read(void *data, size_t len)
 {
     ssize_t bytesRead = ::read(socketDescriptor_.getFd(), data, len);
+
     if (bytesRead < 0)
+    {
+        if (errno == EAGAIN || errno == EWOULDBLOCK)
+        {
+            throw TimeoutException("read timeout");
+        }
+
         throw TcpException("cannot read from socket descriptor");
+    }
 
     return bytesRead;
 }

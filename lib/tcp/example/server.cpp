@@ -9,7 +9,8 @@ int main()
     tcp::Connection conn = server.accept();
     server.close();
 
-    conn.write("Hello, world!", sizeof("Hello, world"));
+    std::string message = "Hello, world!";
+    conn.write(message.data(), message.size());
     conn.close();
 
     return 0;
