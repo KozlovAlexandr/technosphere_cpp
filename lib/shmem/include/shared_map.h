@@ -20,10 +20,12 @@ class SharedMap
     using PairAllocator = ShAlloc<Pair>;
     using Map = std::map<Key_, Value_, Compare, PairAllocator>;
     using pMmap = std::unique_ptr<char, std::function<void(char*)>>;
+    using pMap = std::unique_ptr<Map, std::function<void(Map*)>>;
+    using pSemaphore = std::unique_ptr<Semaphore, std::function<void(Semaphore*)>>;
 
     pMmap mmap_;
-    Map *map_;
-    Semaphore *semaphore_;
+    pMap  map_;
+    pSemaphore semaphore_;
 
 public:
     SharedMap(size_t blockSize, size_t blockCount)
@@ -44,13 +46,16 @@ public:
         float header_size = (sizeof(ShMemState) + blockCount) / static_cast<float>(blockSize);
 
         state->block_size = blockSize;
-        state->blocks_count = blockCount - std::floor(header_size);
+        state->blocks_count = blockCount - std::ceil(header_size);
         state->used_blocks_table = mmap_.get() + sizeof(ShMemState);
         state->first_block = state->used_blocks_table + state->blocks_count;
         ::memset(state->used_blocks_table, FREE_BLOCK, state->blocks_count);
 
-        map_ = new (ShAlloc<Map>{state}.allocate(1)) Map(ShAlloc<PairAllocator>{state});
-        semaphore_ = new (ShAlloc<Semaphore>{state}.allocate(1)) Semaphore;
+        map_ = pMap(new (ShAlloc<Map>{state}.allocate(1)) Map(ShAlloc<PairAllocator>{state}),
+                    [](Map* map) { map->~Map(); } );
+
+        semaphore_ = pSemaphore(new (ShAlloc<Semaphore>{state}.allocate(1)) Semaphore{},
+                                [](Semaphore *semaphore) { semaphore->~Semaphore(); });
     }
 
     void update(const Key &key, const Value &value)
@@ -80,7 +85,7 @@ public:
         return Value{ map_->at(transformKey(key)) };
     }
 
-    Value remove(const Key &key)
+    void remove(const Key &key)
     {
         SemaphoreLock semaphoreLock{*semaphore_};
         if (map_->find(transformKey(key)) == map_->end())

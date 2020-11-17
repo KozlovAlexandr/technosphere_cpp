@@ -14,7 +14,7 @@ int main()
 
     if (!fork())
     {
-        s.insert(3, "hello world fdsfdsfsdfsfsfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdf");
+        s.insert(3, "This is a string long enough not to use the small string optimization");
         return 0;
     }
 
