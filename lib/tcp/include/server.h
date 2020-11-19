@@ -20,6 +20,8 @@ public:
     void setTimeout(unsigned msec);
     void close();
     Connection accept();
+    void setNonBlocking();
+    [[nodiscard]] int getFd() const;
 
 private:
     SocketDescriptor socketDescriptor_;

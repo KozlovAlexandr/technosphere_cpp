@@ -10,7 +10,7 @@ class Connection
 {
 public:
     Connection(const std::string& ipAddress, unsigned short port);
-    Connection(Connection &&connection) = default;
+    Connection(Connection &&connection) noexcept = default;
     Connection &operator=(Connection&& connection) = default;
 
     ~Connection() = default;
@@ -23,8 +23,10 @@ public:
     void readExact(void* data, size_t len);
 
     void close();
+    [[nodiscard]] int getFd() const;
 
     void setTimeout(unsigned msecs);
+    void setNonBlocking();
 
 private:
     explicit Connection(int fd);

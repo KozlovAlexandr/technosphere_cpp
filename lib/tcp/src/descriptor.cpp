@@ -61,7 +61,21 @@ void SocketDescriptor::setTimeout(unsigned msecs)
     if (setsockopt(fd_, SOL_SOCKET, SO_SNDTIMEO, &timeout, sizeof(timeout)) < 0
         || setsockopt(fd_, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout)) < 0)
     {
-        throw TcpException("cannot set timeout");
+        throw TcpException(std::string{"cannot set timeout"} + std::strerror(errno));
+    }
+}
+
+void SocketDescriptor::setNonBlocking()
+{
+    int flags = fcntl(fd_, F_GETFL);
+    if (flags < 0)
+    {
+        throw TcpException(std::string{"cannot get socket flags "} + std::strerror(errno));
+    }
+
+    if (fcntl(fd_, F_SETFL, flags | O_NONBLOCK) < 0)
+    {
+        throw TcpException(std::string{"cannot make socket non-blocking"} + std::strerror(errno));
     }
 }
 
