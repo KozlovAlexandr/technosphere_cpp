@@ -1,4 +1,4 @@
-add_library(tcp STATIC src/connection.cpp src/server.cpp src/descriptor.cpp)
+add_library(tcp STATIC src/connection.cpp src/tcp_server.cpp src/descriptor.cpp)
 target_include_directories(tcp PUBLIC include)
 
 add_executable(server_example example/server.cpp)

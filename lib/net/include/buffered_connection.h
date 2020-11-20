@@ -12,7 +12,7 @@ namespace net
 class BufferedConnection
 {
 public:
-    BufferedConnection(tcp::Connection &&conn, EpollDescriptor &epollDescriptor);
+    BufferedConnection(tcp::Connection &&conn, EpollDescriptor &epollDescriptor, uint32_t events = EPOLLRDHUP);
     BufferedConnection(BufferedConnection&&) noexcept = default;
     BufferedConnection& operator=(BufferedConnection&&) noexcept = default;
     BufferedConnection() = delete;
@@ -33,8 +33,9 @@ public:
     std::string& writeBuf();
 
     [[nodiscard]] int getFd() const;
+    void setTimeout(unsigned msecs);
 
-private:
+protected:
     static constexpr int MAX_READ_BUF_CAPACITY = 1024;
 
     tcp::Connection connection_;

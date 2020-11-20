@@ -3,14 +3,13 @@
 namespace net
 {
 
-BufferedConnection::BufferedConnection(tcp::Connection &&connection, EpollDescriptor &epollDescriptor) :
+BufferedConnection::BufferedConnection(tcp::Connection &&connection, EpollDescriptor &epollDescriptor, uint32_t events) :
         epollDescriptor_(epollDescriptor),
         connection_(std::move(connection)),
-        events_(EPOLLRDHUP)
+        events_(events)
 {
     epollDescriptor_.get().add(connection_.getFd(), events_);
 }
-
 
 void BufferedConnection::subscribeRead()
 {
@@ -73,6 +72,11 @@ std::string &BufferedConnection::readBuf()
 std::string &BufferedConnection::writeBuf()
 {
     return writeBuf_;
+}
+
+void BufferedConnection::setTimeout(unsigned int msecs)
+{
+    connection_.setTimeout(msecs);
 }
 
 } // namespace net

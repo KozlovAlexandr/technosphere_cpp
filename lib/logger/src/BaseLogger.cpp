@@ -40,7 +40,7 @@ void BaseLogger::log(const std::string &message, Level level)
 {
     if (level >= this->level())
     {
-        outStream_ << message << "\n";
+        outStream_ << message << std::endl;
         if (outStream_.fail())
             throw LoggerException("cannot write to file");
     }

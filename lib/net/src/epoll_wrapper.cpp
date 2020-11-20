@@ -4,7 +4,7 @@
 #include <fcntl.h>
 #include <stdexcept>
 #include <cstring>
-
+#include <iostream>
 namespace net
 {
 
@@ -59,6 +59,7 @@ std::vector<::epoll_event> EpollDescriptor::wait(int ms, int maxEvents)
     std::vector<::epoll_event> eventQueue(maxEvents);
 
     int eventsCount = ::epoll_wait(fd_, eventQueue.data(), eventQueue.size(), ms);
+    std::cout << "I am here" << std::endl;
     if (eventsCount < 0)
     {
         if (errno == EINTR)
