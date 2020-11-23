@@ -34,6 +34,7 @@ public:
 
     [[nodiscard]] int getFd() const;
     void setTimeout(unsigned msecs);
+    void setNonBlocking();
 
 protected:
     static constexpr int MAX_READ_BUF_CAPACITY = 1024;

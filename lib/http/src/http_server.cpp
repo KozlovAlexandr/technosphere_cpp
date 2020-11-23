@@ -94,6 +94,7 @@ namespace http
                 if (event.events & EPOLLIN)
                 {
                     HttpConnection newConn = HttpConnection(server_.accept(), workersEpoll_, EPOLLONESHOT | EPOLLET);
+                    newConn.setNonBlocking();
                     newConn.setTimeout(5000);
                     int connFd = newConn.getFd();
                     std::unique_lock<std::shared_mutex> lock(mutex);

@@ -79,4 +79,9 @@ void BufferedConnection::setTimeout(unsigned int msecs)
     connection_.setTimeout(msecs);
 }
 
+void BufferedConnection::setNonBlocking()
+{
+    connection_.setNonBlocking();
+}
+
 } // namespace net

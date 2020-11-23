@@ -13,13 +13,9 @@ void onRequest(http::HttpRequest& request, http::HttpConnection &conn)
     response.body_ = "<html><p>Hello, world</p></html>";
     response.headers_["Content-Length"] = std::to_string(response.body_.size());
 
-    if (request.headers_["Connection"] == "keep-alive")
-        conn.keepAlive = true;
-    else
-        conn.keepAlive = false;
+    conn.keepAlive = request.headers_["Connection"] == "keep-alive";
 
     conn.writeBuf().append(response.toString());
-
 
     conn.subscribeWrite();
     log::info("subscibe  write on descriptor " + std::to_string(conn.getFd()));
@@ -30,7 +26,7 @@ int main()
     http::HttpServer server;
     server.setCallback(onRequest);
     server.open("127.0.0.1", 8000);
-    server.run(2);
+    server.run(8);
 
     return 0;
 }
