@@ -20,12 +20,11 @@ class SharedMap
     using PairAllocator = ShAlloc<Pair>;
     using Map = std::map<Key_, Value_, Compare, PairAllocator>;
     using pMmap = std::unique_ptr<char, std::function<void(char*)>>;
-    using pMap = std::unique_ptr<Map, std::function<void(Map*)>>;
     using pSemaphore = std::unique_ptr<Semaphore, std::function<void(Semaphore*)>>;
 
     pMmap mmap_;
-    pMap  map_;
     pSemaphore semaphore_;
+    Map *map_;
 
 public:
     SharedMap(size_t blockSize, size_t blockCount)
@@ -51,11 +50,10 @@ public:
         state->first_block = state->used_blocks_table + state->blocks_count;
         ::memset(state->used_blocks_table, FREE_BLOCK, state->blocks_count);
 
-        map_ = pMap(new (ShAlloc<Map>{state}.allocate(1)) Map(ShAlloc<PairAllocator>{state}),
-                    [](Map* map) { map->~Map(); } );
-
         semaphore_ = pSemaphore(new (ShAlloc<Semaphore>{state}.allocate(1)) Semaphore{},
                                 [](Semaphore *semaphore) { semaphore->~Semaphore(); });
+
+        map_ = new (ShAlloc<Map>{state}.allocate(1)) Map(ShAlloc<PairAllocator>{state});
     }
 
     void update(const Key &key, const Value &value)
