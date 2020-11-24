@@ -29,7 +29,7 @@ class SharedMap
 public:
     SharedMap(size_t blockSize, size_t blockCount)
     {
-        size_t shmemSize = blockCount * blockSize;
+        size_t shmemSize = sizeof(Semaphore) + sizeof(Map) + sizeof(ShMemState) + blockCount + blockCount * blockSize;
         void* mmap = ::mmap(0, shmemSize,
                             PROT_READ | PROT_WRITE,
                             MAP_ANONYMOUS | MAP_SHARED,
@@ -40,20 +40,18 @@ public:
 
         mmap_ = pMmap(static_cast<char*>(mmap), [shmemSize](char* shmem) { ::munmap(shmem, shmemSize); } );
 
-        ShMemState* state = new(mmap_.get()) ShMemState{};
+        semaphore_ = pSemaphore(new (mmap_.get()) Semaphore{},
+                                [](Semaphore *semaphore) { semaphore->~Semaphore(); });
 
-        float header_size = (sizeof(ShMemState) + blockCount) / static_cast<float>(blockSize);
+        ShMemState* state = new(mmap_.get() + sizeof(Semaphore) + sizeof(Map)) ShMemState{};
 
         state->block_size = blockSize;
-        state->blocks_count = blockCount - std::ceil(header_size);
-        state->used_blocks_table = mmap_.get() + sizeof(ShMemState);
+        state->blocks_count = blockCount;
+        state->used_blocks_table = mmap_.get() + sizeof(Semaphore) + sizeof(Map) + sizeof(ShMemState);
         state->first_block = state->used_blocks_table + state->blocks_count;
         ::memset(state->used_blocks_table, FREE_BLOCK, state->blocks_count);
 
-        semaphore_ = pSemaphore(new (ShAlloc<Semaphore>{state}.allocate(1)) Semaphore{},
-                                [](Semaphore *semaphore) { semaphore->~Semaphore(); });
-
-        map_ = new (ShAlloc<Map>{state}.allocate(1)) Map(ShAlloc<PairAllocator>{state});
+        map_ = new (mmap_.get() + sizeof(Semaphore)) Map(ShAlloc<PairAllocator>{state});
     }
 
     void update(const Key &key, const Value &value)
