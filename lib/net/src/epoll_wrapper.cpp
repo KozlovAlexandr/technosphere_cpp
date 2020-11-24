@@ -4,7 +4,7 @@
 #include <fcntl.h>
 #include <stdexcept>
 #include <cstring>
-#include <iostream>
+
 namespace net
 {
 
@@ -17,13 +17,16 @@ EpollDescriptor::~EpollDescriptor()
 
 void EpollDescriptor::open()
 {
-    fd_ = epoll_create(1);
+    fd_ = ::epoll_create(1);
     if (fd_ < 0)
         throw NetException("cannot create epoll");
 }
 
 void EpollDescriptor::close()
 {
+    if (fd_ == -1)
+        return;
+
     ::close(fd_);
     fd_ = -1;
 }
@@ -61,9 +64,6 @@ std::vector<::epoll_event> EpollDescriptor::wait(int ms, int maxEvents)
     int eventsCount = ::epoll_wait(fd_, eventQueue.data(), eventQueue.size(), ms);
     if (eventsCount < 0)
     {
-        if (errno == EINTR)
-            throw TimeoutNetException("wait timeout error");
-
         throw NetException(std::string{"error in epoll_wait "} + strerror(errno));
     }
 

@@ -2,9 +2,6 @@
 
 #include "epoll_wrapper.h"
 #include "connection.h"
-#include <vector>
-#include <cstdint>
-#include <functional>
 
 namespace net
 {
@@ -12,6 +9,7 @@ namespace net
 class BufferedConnection
 {
 public:
+    /// epollDescriptor must must be valid for the lifetime of the BufferedConnection
     BufferedConnection(tcp::Connection &&conn, EpollDescriptor &epollDescriptor, uint32_t events = EPOLLRDHUP);
     BufferedConnection(BufferedConnection&&) noexcept = default;
     BufferedConnection& operator=(BufferedConnection&&) noexcept = default;
@@ -37,14 +35,17 @@ public:
     std::string& writeBuf();
 
     [[nodiscard]] int getFd() const;
+
     void setTimeout(unsigned msecs);
     void setNonBlocking();
 
 protected:
-    static constexpr int MAX_READ_BUF_CAPACITY = 1024;
 
     tcp::Connection connection_;
-    std::reference_wrapper<EpollDescriptor> epollDescriptor_;
+    EpollDescriptor *epollDescriptor_;
+
+private:
+
     std::string readBuf_;
     std::string writeBuf_;
     uint32_t events_;

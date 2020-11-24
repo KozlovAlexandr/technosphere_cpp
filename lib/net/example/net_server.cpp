@@ -28,10 +28,7 @@ class EchoListener : public net::IServiceListener
         std::string &message = conn.readBuf();
         auto endIt = message.find("\r\n");
         if (endIt == std::string::npos)
-        {
-            conn.subscribeRead();
             return;
-        }
 
         message.resize(endIt);
         std::string answer = "You sent: " + message + "\n";

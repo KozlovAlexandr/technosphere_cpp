@@ -5,6 +5,7 @@
 #include <thread>
 #include <bits/socket.h>
 #include <shared_mutex>
+#include <functional>
 
 namespace http
 {

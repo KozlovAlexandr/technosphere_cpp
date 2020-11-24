@@ -33,13 +33,14 @@ void Service::close()
 {
     while (true)
     {
-        std::vector<epoll_event> eventQueue = epoll_.wait();
+        std::vector<::epoll_event> eventQueue = epoll_.wait();
         for (const epoll_event &event : eventQueue)
         {
             std::cout << connections_.size() << " connections left" << std::endl;
             if (event.data.fd == server_.getFd())
             {
-                auto newConn = BufferedConnection(server_.accept(), epoll_);
+                BufferedConnection newConn{server_.accept(), epoll_};
+
                 connections_.push_back(std::move(newConn));
                 listener_->onNewConnection(connections_.back());
                 continue;
@@ -59,8 +60,8 @@ void Service::close()
             {
                 try
                 {
-                    connIt->readToBuf();
-                    listener_->onReadAvailable(conn);
+                    if (connIt->readToBuf())
+                        listener_->onReadAvailable(conn);
                 } catch (const TcpException &)
                 {
                     listener_->onError(conn);
@@ -79,8 +80,6 @@ void Service::close()
                     connIt->writeFromBuf();
                     if (conn.writeBuf().empty())
                         listener_->onWriteDone(conn);
-                    else
-                        conn.subscribeWrite();
                 } catch (const TcpException &)
                 {
                     listener_->onError(conn);

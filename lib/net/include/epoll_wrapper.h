@@ -18,7 +18,6 @@ public:
     void add(int fd, uint32_t events);
     void mod(int fd, uint32_t events);
     void del(int fd);
-    std::vector<::epoll_event> event_queue;
     void open();
     std::vector<::epoll_event> wait(int ms = -1, int maxEvents = 1024);
 

@@ -36,6 +36,9 @@ SocketDescriptor::~SocketDescriptor()
 
 void SocketDescriptor::close()
 {
+    if (fd_ == -1)
+        return;
+
     ::close(fd_);
     fd_ = -1;
 }
