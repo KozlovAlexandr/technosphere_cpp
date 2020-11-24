@@ -73,4 +73,14 @@ void Server::setTimeout(unsigned msecs)
     socketDescriptor_.setTimeout(msecs);
 }
 
+void Server::setNonBlocking()
+{
+    socketDescriptor_.setNonBlocking();
+}
+
+int Server::getFd() const
+{
+    return socketDescriptor_.getFd();
+}
+
 } // namespace tcp

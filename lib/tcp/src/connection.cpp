@@ -55,7 +55,7 @@ size_t Connection::write(const void* data, size_t len)
             throw TimeoutException("write timeout");
         }
 
-        throw TcpException("cannot write to socket descriptor");
+        throw TcpException(std::string{"cannot write to socket descriptor "} + std::strerror(errno));
     }
 
     return bytesWritten;
@@ -72,7 +72,7 @@ size_t Connection::read(void *data, size_t len)
             throw TimeoutException("read timeout");
         }
 
-        throw TcpException("cannot read from socket descriptor");
+        throw TcpException(std::string{"cannot read from socket descriptor "} + std::strerror(errno));
     }
 
     return bytesRead;
@@ -90,6 +90,11 @@ void Connection::readExact(void *data, size_t len)
 
         bytesTotalRead += bytesRead;
     }
+}
+
+int Connection::getFd() const
+{
+    return socketDescriptor_.getFd();
 }
 
 void Connection::writeExact(const void *data, size_t len)
@@ -110,6 +115,11 @@ void Connection::close()
 void Connection::setTimeout(unsigned msecs)
 {
     socketDescriptor_.setTimeout(msecs);
+}
+
+void Connection::setNonBlocking()
+{
+    socketDescriptor_.setNonBlocking();
 }
 
 } // namespace tcp
