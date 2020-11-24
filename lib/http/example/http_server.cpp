@@ -17,8 +17,9 @@ void onRequest(http::HttpRequest& request, http::HttpConnection &conn)
 
     conn.writeBuf().append(response.toString());
 
-    conn.subscribeWrite();
-    log::info("subscibe  write on descriptor " + std::to_string(conn.getFd()));
+    conn.addEvent(EPOLLOUT);
+    conn.removeEvent(EPOLLIN);
+    conn.reactivate();
 }
 
 int main()

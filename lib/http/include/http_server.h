@@ -32,6 +32,6 @@ private:
     std::vector<std::thread> threads_;
 
     std::function<void(HttpRequest& request, HttpConnection &conn)> onRequest_;
-    void removeConn(int fd);
+    void removeConnection(int fd);
 };
 }

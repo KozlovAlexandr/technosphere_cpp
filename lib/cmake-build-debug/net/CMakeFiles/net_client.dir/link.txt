@@ -1,0 +1,1 @@
+/usr/bin/c++  -g  -rdynamic CMakeFiles/net_client.dir/example/net_client.o  -o net_client   -L/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp  ../tcp/libtcp.a -lpthread 

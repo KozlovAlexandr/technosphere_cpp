@@ -1,0 +1,1 @@
+/usr/bin/c++  -g  -rdynamic CMakeFiles/client_example.dir/example/client.o  -o client_example  libtcp.a 

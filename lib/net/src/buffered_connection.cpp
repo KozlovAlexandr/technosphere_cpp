@@ -11,6 +11,8 @@ BufferedConnection::BufferedConnection(tcp::Connection &&connection, EpollDescri
     epollDescriptor_.get().add(connection_.getFd(), events_);
 }
 
+
+
 void BufferedConnection::subscribeRead()
 {
     events_ |= EPOLLIN;
@@ -82,6 +84,21 @@ void BufferedConnection::setTimeout(unsigned int msecs)
 void BufferedConnection::setNonBlocking()
 {
     connection_.setNonBlocking();
+}
+
+void BufferedConnection::addEvent(uint32_t event)
+{
+    events_ |= event;
+}
+
+void BufferedConnection::removeEvent(uint32_t event)
+{
+    events_ &= ~event;
+}
+
+void BufferedConnection::reactivate()
+{
+    epollDescriptor_.get().mod(connection_.getFd(), events_);
 }
 
 } // namespace net

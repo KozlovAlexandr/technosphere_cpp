@@ -1,0 +1,2 @@
+/usr/bin/ar qc liblogger.a  CMakeFiles/logger.dir/src/BaseLogger.o CMakeFiles/logger.dir/src/StderrLogger.o CMakeFiles/logger.dir/src/StdoutLogger.o CMakeFiles/logger.dir/src/FileLogger.o CMakeFiles/logger.dir/src/Logger.o
+/usr/bin/ranlib liblogger.a

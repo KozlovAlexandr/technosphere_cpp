@@ -19,6 +19,10 @@ public:
     BufferedConnection(const BufferedConnection&) = delete;
     ~BufferedConnection() = default;
 
+    void addEvent(uint32_t event);
+    void removeEvent(uint32_t event);;
+    void reactivate();
+
     void subscribeRead();
     void subscribeWrite();
     void unsubscribeRead();

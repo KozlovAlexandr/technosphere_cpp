@@ -1,0 +1,2 @@
+/usr/bin/ar qc libnet.a  CMakeFiles/net.dir/src/epoll_wrapper.o CMakeFiles/net.dir/src/buffered_connection.o CMakeFiles/net.dir/src/service.o
+/usr/bin/ranlib libnet.a

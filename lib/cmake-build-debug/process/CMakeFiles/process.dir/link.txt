@@ -1,0 +1,2 @@
+/usr/bin/ar qc libprocess.a  CMakeFiles/process.dir/src/process.o CMakeFiles/process.dir/src/pipewrapper.o
+/usr/bin/ranlib libprocess.a

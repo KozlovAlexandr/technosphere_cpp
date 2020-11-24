@@ -1,0 +1,755 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Project"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\process\;CMake Files\logger\;CMake Files\logger\example\;CMake Files\tcp\;CMake Files\net\;CMake Files\http\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="process_example">
+				<Option output="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/process/process_example" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir=""/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/process/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/process/Makefile&quot;  VERBOSE=1 process_example"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/process/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/process/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/process/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="process_example/fast">
+				<Option output="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/process/process_example" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir=""/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/process/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/process/Makefile&quot;  VERBOSE=1 process_example/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/process/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/process/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/process/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="process">
+				<Option output="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/process/libprocess.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/process"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/process/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/process/Makefile&quot;  VERBOSE=1 process"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/process/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/process/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/process/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="process/fast">
+				<Option output="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/process/libprocess.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/process"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/process/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/process/Makefile&quot;  VERBOSE=1 process/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/process/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/process/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/process/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="logger">
+				<Option output="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/logger/liblogger.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/logger"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/logger/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/logger/Makefile&quot;  VERBOSE=1 logger"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/logger/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/logger/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/logger/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="logger/fast">
+				<Option output="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/logger/liblogger.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/logger"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/logger/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/logger/Makefile&quot;  VERBOSE=1 logger/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/logger/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/logger/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/logger/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="logger_example">
+				<Option output="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/logger/example/logger_example" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir=""/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/logger/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/logger/example/Makefile&quot;  VERBOSE=1 logger_example"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/logger/example/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/logger/example/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/logger/example/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="logger_example/fast">
+				<Option output="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/logger/example/logger_example" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir=""/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/logger/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/logger/example/Makefile&quot;  VERBOSE=1 logger_example/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/logger/example/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/logger/example/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/logger/example/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="server_example">
+				<Option output="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp/server_example" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir=""/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/tcp/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp/Makefile&quot;  VERBOSE=1 server_example"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="server_example/fast">
+				<Option output="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp/server_example" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir=""/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/tcp/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp/Makefile&quot;  VERBOSE=1 server_example/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="client_example">
+				<Option output="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp/client_example" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir=""/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/tcp/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp/Makefile&quot;  VERBOSE=1 client_example"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="client_example/fast">
+				<Option output="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp/client_example" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir=""/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/tcp/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp/Makefile&quot;  VERBOSE=1 client_example/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="tcp">
+				<Option output="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp/libtcp.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/tcp/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp/Makefile&quot;  VERBOSE=1 tcp"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="tcp/fast">
+				<Option output="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp/libtcp.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/tcp/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp/Makefile&quot;  VERBOSE=1 tcp/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/tcp/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="net">
+				<Option output="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/net/libnet.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/net"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/net/include"/>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/tcp/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/net/Makefile&quot;  VERBOSE=1 net"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/net/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/net/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/net/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="net/fast">
+				<Option output="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/net/libnet.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/net"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/net/include"/>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/tcp/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/net/Makefile&quot;  VERBOSE=1 net/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/net/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/net/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/net/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="net_server">
+				<Option output="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/net/net_server" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir=""/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/net/include"/>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/tcp/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/net/Makefile&quot;  VERBOSE=1 net_server"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/net/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/net/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/net/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="net_server/fast">
+				<Option output="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/net/net_server" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir=""/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/net/include"/>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/tcp/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/net/Makefile&quot;  VERBOSE=1 net_server/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/net/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/net/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/net/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="net_client">
+				<Option output="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/net/net_client" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir=""/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/tcp/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/net/Makefile&quot;  VERBOSE=1 net_client"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/net/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/net/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/net/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="net_client/fast">
+				<Option output="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/net/net_client" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir=""/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/tcp/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/net/Makefile&quot;  VERBOSE=1 net_client/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/net/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/net/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/net/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="http_client">
+				<Option output="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/http/http_client" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir=""/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/http/include"/>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/tcp/include"/>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/net/include"/>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/logger/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/http/Makefile&quot;  VERBOSE=1 http_client"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/http/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/http/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/http/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="http_client/fast">
+				<Option output="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/http/http_client" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir=""/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/http/include"/>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/tcp/include"/>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/net/include"/>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/logger/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/http/Makefile&quot;  VERBOSE=1 http_client/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/http/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/http/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/http/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="http_server">
+				<Option output="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/http/http_server" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir=""/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/http/include"/>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/tcp/include"/>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/net/include"/>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/logger/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/http/Makefile&quot;  VERBOSE=1 http_server"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/http/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/http/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/http/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="http_server/fast">
+				<Option output="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/http/http_server" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir=""/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/http/include"/>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/tcp/include"/>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/net/include"/>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/logger/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/http/Makefile&quot;  VERBOSE=1 http_server/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/http/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/http/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/http/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="http">
+				<Option output="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/http/libhttp.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/http"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/http/include"/>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/tcp/include"/>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/net/include"/>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/logger/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/http/Makefile&quot;  VERBOSE=1 http"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/http/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/http/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/http/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="http/fast">
+				<Option output="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/http/libhttp.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/http"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/http/include"/>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/tcp/include"/>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/net/include"/>
+					<Add directory="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/logger/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/http/Makefile&quot;  VERBOSE=1 http/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/http/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/http/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/cmake-build-debug/http/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/http/example/http_client.cpp">
+			<Option target="http_client"/>
+		</Unit>
+		<Unit filename="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/http/example/http_server.cpp">
+			<Option target="http_server"/>
+		</Unit>
+		<Unit filename="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/http/src/http.cpp">
+			<Option target="http"/>
+		</Unit>
+		<Unit filename="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/http/src/http_connection.cpp">
+			<Option target="http"/>
+		</Unit>
+		<Unit filename="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/http/src/http_server.cpp">
+			<Option target="http"/>
+		</Unit>
+		<Unit filename="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/logger/example/example.cpp">
+			<Option target="logger_example"/>
+		</Unit>
+		<Unit filename="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/logger/src/BaseLogger.cpp">
+			<Option target="logger"/>
+		</Unit>
+		<Unit filename="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/logger/src/FileLogger.cpp">
+			<Option target="logger"/>
+		</Unit>
+		<Unit filename="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/logger/src/Logger.cpp">
+			<Option target="logger"/>
+		</Unit>
+		<Unit filename="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/logger/src/StderrLogger.cpp">
+			<Option target="logger"/>
+		</Unit>
+		<Unit filename="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/logger/src/StdoutLogger.cpp">
+			<Option target="logger"/>
+		</Unit>
+		<Unit filename="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/net/example/net_client.cpp">
+			<Option target="net_client"/>
+		</Unit>
+		<Unit filename="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/net/example/net_server.cpp">
+			<Option target="net_server"/>
+		</Unit>
+		<Unit filename="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/net/src/buffered_connection.cpp">
+			<Option target="net"/>
+		</Unit>
+		<Unit filename="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/net/src/epoll_wrapper.cpp">
+			<Option target="net"/>
+		</Unit>
+		<Unit filename="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/net/src/service.cpp">
+			<Option target="net"/>
+		</Unit>
+		<Unit filename="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/process/example/example.cpp">
+			<Option target="process_example"/>
+		</Unit>
+		<Unit filename="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/process/src/pipewrapper.cpp">
+			<Option target="process"/>
+		</Unit>
+		<Unit filename="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/process/src/process.cpp">
+			<Option target="process"/>
+		</Unit>
+		<Unit filename="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/tcp/example/client.cpp">
+			<Option target="client_example"/>
+		</Unit>
+		<Unit filename="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/tcp/example/server.cpp">
+			<Option target="server_example"/>
+		</Unit>
+		<Unit filename="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/tcp/src/connection.cpp">
+			<Option target="tcp"/>
+		</Unit>
+		<Unit filename="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/tcp/src/descriptor.cpp">
+			<Option target="tcp"/>
+		</Unit>
+		<Unit filename="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/tcp/src/tcp_server.cpp">
+			<Option target="tcp"/>
+		</Unit>
+		<Unit filename="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/process/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\process\"/>
+		</Unit>
+		<Unit filename="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/logger/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\logger\"/>
+		</Unit>
+		<Unit filename="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/logger/example/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\logger\example\"/>
+		</Unit>
+		<Unit filename="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/tcp/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\tcp\"/>
+		</Unit>
+		<Unit filename="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/net/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\net\"/>
+		</Unit>
+		<Unit filename="/home/alexandr/CLionProjects/Sphere/sphere_cpp/lib/http/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\http\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

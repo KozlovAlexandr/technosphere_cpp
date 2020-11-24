@@ -19,26 +19,29 @@ namespace http
 
                 if (connections_.find(event.data.fd) == connections_.end())
                     continue;
+                HttpConnection &conn = connections_.at(event.data.fd);
+
+                sharedLock.unlock();
 
                 log::info("Thread " + std::to_string(i) + " on descriptor " + std::to_string(event.data.fd) + " with events "
                     + std::to_string(event.events));
 
-                HttpConnection &conn = connections_.at(event.data.fd);
-
                 if (event.events & EPOLLIN)
                 {
-                    try {
+                    try
+                    {
                         conn.readToBuf();
                         HttpRequest request(conn.readBuf());
                         conn.readBuf().clear();
                         log::debug(request.toString());
                         log::debug("request is ready on descriptor " + std::to_string(conn.getFd()));
                         onRequest_(request, conn);
-                        conn.unsubscribeRead();
-                    } catch (const HttpException &) {
+                    } catch (const HttpException &)
+                    {
                         log::debug("request is not ready");
                         conn.subscribeRead();
-                    } catch (const TcpException &) {
+                    } catch (const TcpException &)
+                    {
                         log::debug("error happened on descriptor" + std::to_string(conn.getFd()));
                     }
                 } else if (event.events & EPOLLOUT)
@@ -63,16 +66,14 @@ namespace http
                     {
                         conn.close();
 
-                        sharedLock.unlock();
-
                         // remove conn from map
-                        std::unique_lock<std::shared_mutex> lock{mutex};
                         log::debug("Client on descriptor " + std::to_string(event.data.fd) + " disconnected");
-                        connections_.erase(event.data.fd);
+                        removeConnection(event.data.fd);
                     } else
                     {
-                        conn.unsubscribeWrite();
-                        conn.subscribeRead();
+                        conn.removeEvent(EPOLLOUT);
+                        conn.addEvent(EPOLLIN);
+                        conn.reactivate();
                     }
                 }
             }
@@ -95,7 +96,7 @@ namespace http
                 {
                     HttpConnection newConn = HttpConnection(server_.accept(), workersEpoll_, EPOLLONESHOT | EPOLLET);
                     newConn.setNonBlocking();
-                    newConn.setTimeout(5000);
+
                     int connFd = newConn.getFd();
                     std::unique_lock<std::shared_mutex> lock(mutex);
                     connections_.emplace(connFd, std::move(newConn));
@@ -107,10 +108,7 @@ namespace http
                 }
                 if (event.events & EPOLLRDHUP)
                 {
-                    // remove conn from map
-                    std::unique_lock<std::shared_mutex> lock(mutex);
-                    log::info("Client on descriptor " + std::to_string(event.data.fd) + " disconnected");
-                    connections_.erase(event.data.fd);
+                    removeConnection(event.data.fd);
                 }
             }
         }
@@ -144,5 +142,11 @@ namespace http
             th.join();
 
         connections_.clear();
+    }
+
+    void HttpServer::removeConnection(int fd)
+    {
+        std::unique_lock<std::shared_mutex> lock{mutex};
+        connections_.erase(fd);
     }
 }
