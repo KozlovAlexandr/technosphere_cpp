@@ -23,7 +23,7 @@ class SharedMap
     using pSemaphore = std::unique_ptr<Semaphore, std::function<void(Semaphore*)>>;
 
     pMmap mmap_;
-    pSemaphore semaphore_;
+    Semaphore *semaphore_;
     Map *map_;
 
 public:
@@ -40,8 +40,7 @@ public:
 
         mmap_ = pMmap(static_cast<char*>(mmap), [shmemSize](char* shmem) { ::munmap(shmem, shmemSize); } );
 
-        semaphore_ = pSemaphore(new (mmap_.get()) Semaphore{},
-                                [](Semaphore *semaphore) { semaphore->~Semaphore(); });
+        semaphore_ = new (mmap_.get()) Semaphore{};
 
         ShMemState* state = new(mmap_.get() + sizeof(Semaphore) + sizeof(Map)) ShMemState{};
 
@@ -52,6 +51,13 @@ public:
         ::memset(state->used_blocks_table, FREE_BLOCK, state->blocks_count);
 
         map_ = new (mmap_.get() + sizeof(Semaphore)) Map(ShAlloc<PairAllocator>{state});
+    }
+
+    void deleteMap()
+    {
+        map_->~Map();
+        semaphore_->~Semaphore();
+        mmap_.reset();
     }
 
     void update(const Key &key, const Value &value)
