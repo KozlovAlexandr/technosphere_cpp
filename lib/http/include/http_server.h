@@ -21,6 +21,8 @@ public:
     }
 
 private:
+    void sendResponse(HttpConnection &conn);
+    void processRequest(HttpConnection &conn);
     void work(int i);
     void removeConnection(int fd);
 

@@ -3,6 +3,11 @@
 #include <sstream>
 #include <iostream>
 
+namespace
+{
+    constexpr size_t MAX_REQUEST_SIZE = 8 * 1024 * 1024; // 8 MB
+}
+
 namespace http
 {
 
@@ -29,26 +34,15 @@ void HttpServer::work(int i)
                 {
                     log::info("Client on  descriptor " + std::to_string(event.data.fd) + " disconnected");
                     removeConnection(event.data.fd);
-                } else if (event.events & EPOLLIN)
-                {
-                    if (conn.readRequest())
-                        onRequest_(*this, conn);
                 } else if (event.events & EPOLLERR)
                 {
                     log::error("Error happened on client on descriptor " + std::to_string(event.data.fd));
+                } else if (event.events & EPOLLIN)
+                {
+                    processRequest(conn);
                 } else if (event.events & EPOLLOUT)
                 {
-                    if (!conn.writeResponse())
-                        continue;
-
-                    if (!conn.doKeepAlive())
-                    {
-                        log::info("Client on  descriptor " + std::to_string(event.data.fd) + " disconnected");
-                        removeConnection(event.data.fd);
-                    } else
-                    {
-                        conn.subReadUnsubWrite();
-                    }
+                    sendResponse(conn);
                 }
             } catch (const TcpException&)
             {
@@ -134,6 +128,41 @@ void HttpServer::removeConnection(int fd)
 {
     std::unique_lock<std::shared_mutex> lock{mutex_};
     connections_.erase(fd);
+}
+
+void HttpServer::sendResponse(HttpConnection &conn)
+{
+    if (!conn.writeResponse())
+    {
+        conn.reactivate();
+        return;
+    }
+
+    if (!conn.doKeepAlive())
+    {
+        log::info("Client on  descriptor " + std::to_string(conn.getFd()) + " disconnected");
+        removeConnection(conn.getFd());
+    } else
+    {
+        conn.subReadUnsubWrite();
+    }
+}
+
+void HttpServer::processRequest(HttpConnection &conn)
+{
+    if (conn.readRequest())
+    {
+        onRequest_(*this, conn);
+        return;
+    }
+
+    if (conn.readBuf().size() > MAX_REQUEST_SIZE)
+    {
+        removeConnection(conn.getFd());
+    } else
+    {
+        conn.reactivate();
+    }
 }
 
 } // namespace http

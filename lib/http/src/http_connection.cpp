@@ -17,7 +17,6 @@ bool HttpConnection::readRequest()
         return true;
     } catch (const HttpException &)
     {
-        reactivate();
         return false;
     }
 }
@@ -42,7 +41,6 @@ bool HttpConnection::writeResponse()
     writeFromBuf();
     if (!writeBuf().empty())
     {
-        reactivate();
         return false;
     }
 
