@@ -17,12 +17,13 @@ public:
     BufferedConnection(const BufferedConnection&) = delete;
     ~BufferedConnection() = default;
 
-    void addEvent(uint32_t event);
-    void removeEvent(uint32_t event);;
     void reactivate();
-
     void subscribeRead();
     void subscribeWrite();
+    void subReadUnsubWrite();
+    void subReadSubClose();
+    void subWriteUnsubRead();
+
     void unsubscribeRead();
     void unsubscribeWrite();
 
@@ -43,12 +44,12 @@ protected:
 
     tcp::Connection connection_;
     EpollDescriptor *epollDescriptor_;
+    uint32_t events_;
 
 private:
 
     std::string readBuf_;
     std::string writeBuf_;
-    uint32_t events_;
 };
 
 } // namespace net

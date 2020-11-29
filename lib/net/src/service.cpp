@@ -40,6 +40,7 @@ void Service::close()
             if (event.data.fd == server_.getFd())
             {
                 BufferedConnection newConn{server_.accept(), epoll_};
+                newConn.setNonBlocking();
 
                 connections_.push_back(std::move(newConn));
                 listener_->onNewConnection(connections_.back());

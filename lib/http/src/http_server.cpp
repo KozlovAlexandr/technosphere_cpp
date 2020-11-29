@@ -5,148 +5,135 @@
 
 namespace http
 {
-    void HttpServer::work(int i)
+
+void HttpServer::work(int i)
+{
+    while (true)
     {
-        while (true)
+        std::vector<epoll_event> epollQueue = workersEpoll_.wait();
+
+        for (const epoll_event &event : epollQueue)
         {
-            std::vector<epoll_event> epollQueue = workersEpoll_.wait();
+            log::debug("Thread " + std::to_string(i) + " on descriptor " + std::to_string(event.data.fd)
+                       + " with events " + std::to_string(event.events));
 
-            log::debug(std::to_string(i) + " thread woke up");
+            std::shared_lock<std::shared_mutex> sharedLock{mutex_};
+            if (connections_.find(event.data.fd) == connections_.end())
+                continue;
+            HttpConnection &conn = connections_.at(event.data.fd);
+            sharedLock.unlock();
 
-            for (const epoll_event &event : epollQueue)
+            try
             {
-                std::shared_lock<std::shared_mutex> sharedLock{mutex};
-
-                if (connections_.find(event.data.fd) == connections_.end())
-                    continue;
-                HttpConnection &conn = connections_.at(event.data.fd);
-
-                sharedLock.unlock();
-
-                log::info("Thread " + std::to_string(i) + " on descriptor " + std::to_string(event.data.fd) + " with events "
-                    + std::to_string(event.events));
-
-                if (event.events & EPOLLIN)
+                if (event.events & EPOLLRDHUP)
                 {
-                    try
-                    {
-                        conn.readToBuf();
-                        HttpRequest request(conn.readBuf());
-                        conn.readBuf().clear();
-                        log::debug(request.toString());
-                        log::debug("request is ready on descriptor " + std::to_string(conn.getFd()));
-                        onRequest_(request, conn);
-                    } catch (const HttpException &)
-                    {
-                        log::debug("request is not ready");
-                        conn.subscribeRead();
-                    } catch (const TcpException &)
-                    {
-                        log::debug("error happened on descriptor" + std::to_string(conn.getFd()));
-                    }
+                    log::info("Client on  descriptor " + std::to_string(event.data.fd) + " disconnected");
+                    removeConnection(event.data.fd);
+                } else if (event.events & EPOLLIN)
+                {
+                    if (conn.readRequest())
+                        onRequest_(*this, conn);
+                } else if (event.events & EPOLLERR)
+                {
+                    log::error("Error happened on client on descriptor " + std::to_string(event.data.fd));
                 } else if (event.events & EPOLLOUT)
                 {
-                    try {
-                        conn.writeFromBuf();
-                        log::debug("request was sent to descriptor " + std::to_string(conn.getFd()));
-                        if (conn.writeBuf().empty())
-                            log::debug("entire request was successfully sent");
-                        else
-                        {
-                            log::info("subscibe  write on descriptor " + std::to_string(conn.getFd()));
-                            conn.subscribeWrite();
-                            continue;
-                        }
-                    } catch (const TcpException &) {
-                        log::debug("Error happened on descriptor" + std::to_string(conn.getFd()));
+                    if (!conn.writeResponse())
                         continue;
-                    }
 
-                    if (!conn.keepAlive)
+                    if (!conn.doKeepAlive())
                     {
-                        conn.close();
-
-                        // remove conn from map
-                        log::debug("Client on descriptor " + std::to_string(event.data.fd) + " disconnected");
+                        log::info("Client on  descriptor " + std::to_string(event.data.fd) + " disconnected");
                         removeConnection(event.data.fd);
                     } else
                     {
-                        conn.removeEvent(EPOLLOUT);
-                        conn.addEvent(EPOLLIN);
-                        conn.reactivate();
+                        conn.subReadUnsubWrite();
                     }
                 }
+            } catch (const TcpException&)
+            {
+                log::error("Error happened on client on descriptor " + std::to_string(event.data.fd));
             }
         }
     }
+}
 
-    [[noreturn]] void HttpServer::run(unsigned threadsNum)
+void HttpServer::run(unsigned threadsNum)
+{
+    for (int i = 0; i < std::min(std::thread::hardware_concurrency(), threadsNum); ++i)
     {
-        for (int i = 0; i < std::min(std::thread::hardware_concurrency(), threadsNum); ++i)
-        {
-            threads_.emplace_back(&HttpServer::work, this, i);
-        }
+        threads_.emplace_back(&HttpServer::work, this, i);
+    }
 
-        while (true)
+    while (true)
+    {
+        std::vector<epoll_event> epollQueue = serverEpoll_.wait();
+
+        for (const epoll_event &event : epollQueue)
         {
-            std::vector<epoll_event> epollQueue = serverEpoll_.wait();
-            for (const epoll_event &event : epollQueue)
+            if (event.events & EPOLLIN)
             {
-                if (event.events & EPOLLIN)
+                try
                 {
-                    HttpConnection newConn = HttpConnection(server_.accept(), workersEpoll_, EPOLLONESHOT | EPOLLET);
+                    HttpConnection newConn{server_.accept(), workersEpoll_,EPOLLONESHOT | EPOLLET};
                     newConn.setNonBlocking();
 
                     int connFd = newConn.getFd();
-                    std::unique_lock<std::shared_mutex> lock(mutex);
-                    connections_.emplace(connFd, std::move(newConn));
+                    log::info("New connection on descriptor " + std::to_string(connFd));
 
-                    log::debug("New connection on descriptor " + std::to_string(connFd));
-
-                    serverEpoll_.add(connFd, EPOLLRDHUP);
-                    connections_.at(connFd).subscribeRead();
-                }
-                if (event.events & EPOLLRDHUP)
+                    std::unique_lock<std::shared_mutex> lock{mutex_};
+                    try
+                    {
+                        connections_.emplace(connFd, std::move(newConn));
+                        connections_.at(connFd).subReadSubClose();
+                    } catch (const TcpException &e)
+                    {
+                        log::error(std::string{"cant subscribe for new connection on descriptor "} +
+                            std::to_string(connFd) + " " + e.what());
+                        connections_.erase(connFd);
+                    }
+                } catch (const TcpException& e)
                 {
-                    removeConnection(event.data.fd);
+                    log::error(std::string{"can't create new connection "} + e.what());
+                    continue;
                 }
             }
         }
     }
-
-    void HttpServer::open(const std::string &ipAddress, unsigned short port, int maxConnections)
-    {
-        log::initWithStdoutLogger(log::Level::INFO);
-        tcp::Server tmpServer(ipAddress, port, maxConnections);
-        tmpServer.setNonBlocking();
-
-        net::EpollDescriptor tmpServerEpoll;
-        tmpServerEpoll.open();
-        tmpServerEpoll.add(tmpServer.getFd(), EPOLLIN);
-
-        net::EpollDescriptor tmpWorkerEpoll;
-        tmpWorkerEpoll.open();
-
-        server_ = std::move(tmpServer);
-        serverEpoll_ = std::move(tmpServerEpoll);
-        workersEpoll_ = std::move(tmpWorkerEpoll);
-    }
-
-    void HttpServer::close()
-    {
-        server_.close();
-        workersEpoll_.close();
-        serverEpoll_.close();
-
-        for (std::thread &th : threads_)
-            th.join();
-
-        connections_.clear();
-    }
-
-    void HttpServer::removeConnection(int fd)
-    {
-        std::unique_lock<std::shared_mutex> lock{mutex};
-        connections_.erase(fd);
-    }
 }
+
+void HttpServer::open(const std::string &ipAddress, unsigned short port, int maxConnections)
+{
+    log::initWithStdoutLogger(log::Level::ERROR);
+    tcp::Server tmpServer(ipAddress, port, maxConnections);
+    tmpServer.setNonBlocking();
+
+    net::EpollDescriptor tmpServerEpoll;
+    tmpServerEpoll.open();
+    tmpServerEpoll.add(tmpServer.getFd(), EPOLLIN);
+
+    net::EpollDescriptor tmpWorkerEpoll;
+    tmpWorkerEpoll.open();
+
+    server_ = std::move(tmpServer);
+    serverEpoll_ = std::move(tmpServerEpoll);
+    workersEpoll_ = std::move(tmpWorkerEpoll);
+}
+
+void HttpServer::close()
+{
+    server_.close();
+    workersEpoll_.close();
+    serverEpoll_.close();
+
+    for (std::thread &th : threads_)
+        th.join();
+}
+
+void HttpServer::removeConnection(int fd)
+{
+    std::unique_lock<std::shared_mutex> lock{mutex_};
+    connections_.erase(fd);
+}
+
+} // namespace http

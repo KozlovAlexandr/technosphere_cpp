@@ -28,7 +28,6 @@ void BufferedConnection::subscribeWrite()
 {
     events_ |= EPOLLOUT;
     epollDescriptor_->mod(connection_.getFd(), events_);
-
 }
 
 void BufferedConnection::unsubscribeRead()
@@ -92,18 +91,31 @@ void BufferedConnection::setNonBlocking()
     connection_.setNonBlocking();
 }
 
-void BufferedConnection::addEvent(uint32_t event)
+void BufferedConnection::subReadUnsubWrite()
 {
-    events_ |= event;
+    events_ |= EPOLLIN;
+    events_ &= ~EPOLLOUT;
+
+    epollDescriptor_->mod(connection_.getFd(), events_);
 }
 
-void BufferedConnection::removeEvent(uint32_t event)
+void BufferedConnection::subWriteUnsubRead()
 {
-    events_ &= ~event;
+    events_ |= EPOLLOUT;
+    events_ &= ~EPOLLIN;
+
+    epollDescriptor_->mod(connection_.getFd(), events_);
 }
 
 void BufferedConnection::reactivate()
 {
+    epollDescriptor_->mod(connection_.getFd(), events_);
+}
+
+void BufferedConnection::subReadSubClose()
+{
+    events_ |= EPOLLIN | EPOLLRDHUP;
+
     epollDescriptor_->mod(connection_.getFd(), events_);
 }
 

@@ -1,19 +1,16 @@
-#include "http.h"
-#include "epoll_wrapper.h"
 #include "http_connection.h"
 #include "tcp_server.h"
 #include <thread>
-#include <bits/socket.h>
 #include <shared_mutex>
 #include <functional>
 
 namespace http
 {
+
 class HttpServer
 {
 public:
-    [[noreturn]] void run(unsigned threadsNum);
-    void work(int i);
+    void run(unsigned threadsNum);
     void open(const std::string &ipAddress, unsigned short port, int maxConnections = SOMAXCONN);
     void close();
 
@@ -24,15 +21,18 @@ public:
     }
 
 private:
-    std::unordered_map<int, HttpConnection> connections_;
+    void work(int i);
+    void removeConnection(int fd);
 
-    std::shared_mutex mutex;
+    std::unordered_map<int, HttpConnection> connections_;
+    std::vector<std::thread> threads_;
+
+    std::shared_mutex mutex_;
     tcp::Server server_;
     net::EpollDescriptor serverEpoll_;
     net::EpollDescriptor workersEpoll_;
-    std::vector<std::thread> threads_;
 
-    std::function<void(HttpRequest& request, HttpConnection &conn)> onRequest_;
-    void removeConnection(int fd);
+    std::function<void(HttpServer& server, HttpConnection &conn)> onRequest_;
 };
-}
+
+}  // namespace http

@@ -3,23 +3,24 @@
 #include "Logger.h"
 #include <iostream>
 
-void onRequest(http::HttpRequest& request, http::HttpConnection &conn)
+void onRequest(http::HttpServer& server, http::HttpConnection &conn)
 {
+    const http::HttpRequest request = conn.getRequest();
+    std::string userAgent = request.getHeaderValue("User-Agent");
+
     http::HttpResponse response;
-    response.statusCode = 200;
-    response.version_ = "1.1";
-    response.reasonPhrase_ = "OK";
 
-    response.body_ = "<html><p>Hello, world</p></html>";
-    response.headers_["Content-Length"] = std::to_string(response.body_.size());
+    response.setStatusCode(200);
+    response.setVersion("1.1");
+    response.setReasonPhrase("OK");
 
-    conn.keepAlive = request.headers_["Connection"] == "keep-alive";
+    response.setBody("<html><p> Your User-Agent: " + userAgent + "</p></html>");
 
-    conn.writeBuf().append(response.toString());
+    response.addHeader("Content-Length", std::to_string(response.getBody().size()));
+    response.addHeader("Connection", "keep-alive");
 
-    conn.addEvent(EPOLLOUT);
-    conn.removeEvent(EPOLLIN);
-    conn.reactivate();
+    conn.setResponse(response);
+    conn.subWriteUnsubRead();
 }
 
 int main()
