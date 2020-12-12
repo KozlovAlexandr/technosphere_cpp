@@ -1,0 +1,1 @@
+/usr/bin/c++  -g  -rdynamic CMakeFiles/net_server.dir/example/net_server.o  -o net_server  libnet.a ../tcp/libtcp.a 

@@ -8,13 +8,14 @@ namespace
 namespace net
 {
 
-BufferedConnection::BufferedConnection(tcp::Connection &&connection, EpollDescriptor &epollDescriptor) :
+BufferedConnection::BufferedConnection(tcp::Connection &&connection, EpollDescriptor &epollDescriptor, uint32_t events) :
         epollDescriptor_(&epollDescriptor),
         connection_(std::move(connection)),
-        events_(EPOLLRDHUP)
+        events_(events)
 {
     epollDescriptor_->add(connection_.getFd(), events_);
 }
+
 
 
 void BufferedConnection::subscribeRead()
@@ -78,6 +79,44 @@ std::string &BufferedConnection::readBuf()
 std::string &BufferedConnection::writeBuf()
 {
     return writeBuf_;
+}
+
+void BufferedConnection::setTimeout(unsigned int msecs)
+{
+    connection_.setTimeout(msecs);
+}
+
+void BufferedConnection::setNonBlocking()
+{
+    connection_.setNonBlocking();
+}
+
+void BufferedConnection::subReadUnsubWrite()
+{
+    events_ |= EPOLLIN;
+    events_ &= ~EPOLLOUT;
+
+    epollDescriptor_->mod(connection_.getFd(), events_);
+}
+
+void BufferedConnection::subWriteUnsubRead()
+{
+    events_ |= EPOLLOUT;
+    events_ &= ~EPOLLIN;
+
+    epollDescriptor_->mod(connection_.getFd(), events_);
+}
+
+void BufferedConnection::reactivate()
+{
+    epollDescriptor_->mod(connection_.getFd(), events_);
+}
+
+void BufferedConnection::subReadSubClose()
+{
+    events_ |= EPOLLIN | EPOLLRDHUP;
+
+    epollDescriptor_->mod(connection_.getFd(), events_);
 }
 
 } // namespace net
